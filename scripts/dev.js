@@ -2,8 +2,9 @@ const { spawn } = require("node:child_process");
 const path = require("node:path");
 
 const root = path.resolve(__dirname, "..");
-const npmCmd = process.platform === "win32" ? "npm.cmd" : "npm";
-const useShell = process.platform === "win32";
+const isWindows = process.platform === "win32";
+const command = isWindows ? process.env.ComSpec || "cmd.exe" : "npm";
+const commandArgs = isWindows ? ["/d", "/s", "/c", "npm", "run", "dev"] : ["run", "dev"];
 
 const apps = [
   { name: "backend", cwd: path.join(root, "backend"), color: "\x1b[36m" },
@@ -35,10 +36,10 @@ function stopAll(signal = "SIGTERM") {
 }
 
 for (const app of apps) {
-  const child = spawn(npmCmd, ["run", "dev"], {
+  const child = spawn(command, commandArgs, {
     cwd: app.cwd,
     env: process.env,
-    shell: useShell,
+    shell: false,
     stdio: ["inherit", "pipe", "pipe"]
   });
 

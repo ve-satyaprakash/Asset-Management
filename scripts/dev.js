@@ -3,8 +3,9 @@ const path = require("node:path");
 
 const root = path.resolve(__dirname, "..");
 const isWindows = process.platform === "win32";
+const subCommand = process.argv[2] || "dev";
 const command = isWindows ? process.env.ComSpec || "cmd.exe" : "npm";
-const commandArgs = isWindows ? ["/d", "/s", "/c", "npm", "run", "dev"] : ["run", "dev"];
+const commandArgs = isWindows ? ["/d", "/s", "/c", "npm", "run", subCommand] : ["run", subCommand];
 
 const apps = [
   { name: "backend", cwd: path.join(root, "backend"), color: "\x1b[36m" },

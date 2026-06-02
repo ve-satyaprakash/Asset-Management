@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const BASE = '/api/software-types';
+// const BASE = '/api/software-types';
+const BASE = `${import.meta.env.VITE_API_URL}/api/software-types`; 
 
 export const getSoftwareTypes    = (params)   => axios.get(BASE, { params }).then((r) => r.data);
 export const getAllSoftwareTypes  = ()         => axios.get(`${BASE}/all`).then((r) => r.data);

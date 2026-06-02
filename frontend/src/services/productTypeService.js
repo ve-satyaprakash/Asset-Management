@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const BASE = '/api/product-types';
+// const BASE = '/api/product-types';
+const BASE = `${import.meta.env.VITE_API_URL}/api/product-types`; 
 
 export const getProductTypes = (params) =>
   axios.get(BASE, { params }).then((r) => r.data);

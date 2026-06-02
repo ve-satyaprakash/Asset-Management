@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const BASE = '/api/asset-states';
+// const BASE = '/api/asset-states';
+const BASE = `${import.meta.env.VITE_API_URL}/api/asset-states`;
 
 export const getAssetStates    = (params)   => axios.get(BASE, { params }).then((r) => r.data);
 export const getAllAssetStates  = ()         => axios.get(`${BASE}/all`).then((r) => r.data);

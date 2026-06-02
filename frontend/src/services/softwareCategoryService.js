@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const BASE = '/api/software-categories';
+// const BASE = '/api/software-categories';
+const BASE = `${import.meta.env.VITE_API_URL}/api/software-categories`; 
 
 export const getSoftwareCategories   = (params)   => axios.get(BASE, { params }).then((r) => r.data);
 export const getAllSoftwareCategories = ()         => axios.get(`${BASE}/all`).then((r) => r.data);
